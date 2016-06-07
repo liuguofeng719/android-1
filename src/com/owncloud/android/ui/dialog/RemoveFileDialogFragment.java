@@ -53,10 +53,12 @@ implements ConfirmationDialogFragmentListener {
         Bundle args = new Bundle();
         
         int messageStringId = R.string.confirmation_remove_alert;
-        
-        int localRemoveButton =
-            (file.getFavoriteStatus() == OCFile.FavoriteStatus.NO_FAVORITE && (file.isFolder() || file.isDown())) ?
-            R.string.confirmation_remove_local : -1;
+
+        int localRemoveButton = -1;
+        if (file.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.NO_AVAILABLE_OFFLINE &&
+            (file.isFolder() || file.isDown())) {
+            localRemoveButton = R.string.confirmation_remove_local;
+        }
 
         if (file.isFolder()) {
             messageStringId = R.string.confirmation_remove_folder_alert;
