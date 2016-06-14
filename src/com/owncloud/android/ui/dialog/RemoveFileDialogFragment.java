@@ -55,7 +55,7 @@ implements ConfirmationDialogFragmentListener {
         int messageStringId = R.string.confirmation_remove_alert;
 
         int localRemoveButton = -1;
-        if (file.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.NO_AVAILABLE_OFFLINE &&
+        if (file.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.NOT_AVAILABLE_OFFLINE &&
             (file.isFolder() || file.isDown())) {
             localRemoveButton = R.string.confirmation_remove_local;
         }

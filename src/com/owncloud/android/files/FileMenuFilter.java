@@ -29,6 +29,7 @@ import com.owncloud.android.R;
 import com.owncloud.android.datamodel.OCFile;
 import com.owncloud.android.files.services.FileDownloader;
 import com.owncloud.android.files.services.FileDownloader.FileDownloaderBinder;
+import com.owncloud.android.files.services.FileUploader;
 import com.owncloud.android.files.services.FileUploader.FileUploaderBinder;
 import com.owncloud.android.lib.resources.status.OCCapability;
 import com.owncloud.android.services.OperationsService.OperationsServiceBinder;
@@ -73,12 +74,12 @@ public class FileMenuFilter {
      * @param menu              Options or context menu to filter.
      */
     public void filter(Menu menu) {
-        List<Integer> toShow = new ArrayList<Integer>();
-        List<Integer> toHide = new ArrayList<Integer>();
+        List<Integer> toShow = new ArrayList<>();
+        List<Integer> toHide = new ArrayList<>();
 
         filter(toShow, toHide);
 
-        MenuItem item = null;
+        MenuItem item;
         for (int i : toShow) {
             item = menu.findItem(i);
             if (item != null) {
@@ -213,18 +214,21 @@ public class FileMenuFilter {
             toShow.add(R.id.action_send_file);
         }
 
-        // FAVORITES
-        if (mFile == null || synchronizing || mFile.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.AVAILABLE_OFFLINE) {
-            toHide.add(R.id.action_favorite_file);
+        // SET AS AVAILABLE OFFLINE
+        if (mFile == null || synchronizing ||
+            mFile.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.AVAILABLE_OFFLINE) {
+
+            toHide.add(R.id.action_set_available_offline);
         } else {
-            toShow.add(R.id.action_favorite_file);
+            toShow.add(R.id.action_set_available_offline);
         }
 
-        // UNFAVORITES
-        if (mFile == null || synchronizing || mFile.getAvailableOfflineStatus() != OCFile.AvailableOfflineStatus.AVAILABLE_OFFLINE) {
-            toHide.add(R.id.action_unfavorite_file);
+        // UNSET AS AVAILABLE OFFLINE
+        if (mFile == null || synchronizing ||
+            mFile.getAvailableOfflineStatus() != OCFile.AvailableOfflineStatus.AVAILABLE_OFFLINE) {
+            toHide.add(R.id.action_unset_available_offline);
         } else {
-            toShow.add(R.id.action_unfavorite_file);
+            toShow.add(R.id.action_unset_available_offline);
         }
 
     }

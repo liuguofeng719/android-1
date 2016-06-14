@@ -589,16 +589,11 @@ public class OCFileListFragment extends ExtendedListFragment
                 getActivity().startActivityForResult(action, FileDisplayActivity.REQUEST_CODE__MOVE_FILES);
                 return true;
             }
-            case R.id.action_favorite_file: {
-                if (mTargetFile.getAvailableOfflineStatus() == OCFile.AvailableOfflineStatus.AVAILABLE_OFFLINE_PARENT) {
-                    Toast.makeText(getActivity(),
-                            getString(R.string.unfavorite_inherited_msg), Toast.LENGTH_LONG).show();
-                } else {
-                    mContainerActivity.getFileOperationsHelper().toggleFavorite(mTargetFile, true);
-                }
+            case R.id.action_set_available_offline: {
+                mContainerActivity.getFileOperationsHelper().toggleFavorite(mTargetFile, true);
                 return true;
             }
-            case R.id.action_unfavorite_file: {
+            case R.id.action_unset_available_offline: {
                 mContainerActivity.getFileOperationsHelper().toggleFavorite(mTargetFile, false);
                 return true;
             }

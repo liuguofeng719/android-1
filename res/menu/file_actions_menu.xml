@@ -71,13 +71,13 @@
         android:icon="@android:drawable/ic_menu_set_as"
         android:orderInCategory="1" />
     <item
-        android:id="@+id/action_favorite_file"
-        android:title="@string/favorite"
+        android:id="@+id/action_set_available_offline"
+        android:title="@string/set_available_offline"
         android:icon="@android:drawable/ic_menu_set_as"
         android:orderInCategory="1" />
     <item
-        android:id="@+id/action_unfavorite_file"
-        android:title="@string/unfavorite"
+        android:id="@+id/action_unset_available_offline"
+        android:title="@string/unset_available_offline"
         android:icon="@android:drawable/ic_menu_set_as"
         android:orderInCategory="1" />
     <item
